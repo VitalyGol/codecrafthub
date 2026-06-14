@@ -2,7 +2,7 @@
 # This application provides CRUD operations for managing courses with JSON storage
 # Each course has: id, name, description, target_date, status, and created_at
 
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, jsonify
 import json
 import os
 from datetime import datetime
@@ -110,6 +110,10 @@ def course_exists(course_id, courses):
 # ============================================================================
 # CRUD ENDPOINTS
 # ============================================================================
+
+@app.route('/', methods=['GET'])
+def home():
+    return render_template('index.html')
 
 @app.route('/api/courses', methods=['POST'])
 def create_course():
